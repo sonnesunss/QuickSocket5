@@ -3,15 +3,18 @@ name: Rust
 on:
   push:
     branches: [ "main" ]
+    paths:
+      - 'abc/**'  # Only trigger for changes in abc directory
   pull_request:
     branches: [ "main" ]
+    paths:
+      - 'abc/**'  # Only trigger for changes in abc directory
 
 env:
   CARGO_TERM_COLOR: always
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
