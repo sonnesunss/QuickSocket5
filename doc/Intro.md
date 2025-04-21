@@ -20,3 +20,8 @@ graph TD
     C -->|10. 返回数据| B
     B -->|11. 转发数据| A
 ```
+
+## Socks5 Protocl RFC
+
+1. [SOCKS Protocol Version 5](./rfc1928.txt)
+2. [Username/Password Authentication for SOCKS V5](./rfc1929.txt)
