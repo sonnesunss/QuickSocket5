@@ -4,11 +4,11 @@ on:
   push:
     branches: [ "main" ]
     paths:
-      - 'socks5_impl/**'  # Only trigger for changes in abc directory
+      - 'socks5_impl/**'  # Only trigger for changes in socks5_impl directory
   pull_request:
     branches: [ "main" ]
     paths:
-      - 'socks5_impl/**'  # Only trigger for changes in abc directory
+      - 'socks5_impl/**'  # Only trigger for changes in socks5_impl directory
 
 env:
   CARGO_TERM_COLOR: always
