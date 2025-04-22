@@ -28,17 +28,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             // 构造一个服务端协商响应并写到tcp_stream
             // 这里应该根据客户端的内容来做选择，有些客户端比较规矩会发来支持列表，从中选择一个即可
             // 有些则比较野性，本支持更多却只发来一个，那没得选
-
+            // 假设无定制化需求
             if buffer[0] == socks5lib::SOCKS5_VERSION {
-                /*
-                1. 无须认证
-                2. 用户/密码认证
-                3. 无可接受认证特殊值都应该需要处理
-                4. 剩下的是自定义的根据需要做处理
-                */
-                if buffer[1] > 1 {
-                    auth_method = AuthMethod::UserPassword;
-                }
+                // 解析来自客户端发来的支持的认证方法
+                auth_method = AuthMethod::from_byte(buffer[2]).unwrap_or(AuthMethod::NoAuth);
 
                 let ss5_negotiation_resp = socks5lib::s5server_negotiation_resp::new(auth_method);
                 let r = tcp_stream.write_all(&ss5_negotiation_resp.to_bytes())?;
